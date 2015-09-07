@@ -4,3 +4,4 @@ Hello Git.
 Daniel Wang
 Git tracks changes.
 我是王冰.
+我是男人。
