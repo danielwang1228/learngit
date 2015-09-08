@@ -202,3 +202,14 @@
         删除现场
      2) $ git stash pop
         恢复的同时把stash内容也删除了。
+   
+   5.5 Feature分支
+     每添加一个新功能，最好新建一个feature分支，在分支上开发完成后，合并，最后删除该feature分支。
+   而如果新功能开发过程中接到通知，这个功能废除掉，不用做了，这时候为这个新功能创建的分支就需要销毁。
+     $ git branch -d dev_newfeature
+     这时会出现提示：
+       error: The branch 'feature-vulcan' is not fully merged.
+       If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
+     出现这个提示的原因是分支没有合并。可使用如下命令强制销毁分支
+     $git branch -D dev_newfeature
+   总结：强制删除没有合并过的分支，使用命令：$ git branch -D <name>
