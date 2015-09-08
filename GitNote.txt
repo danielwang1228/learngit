@@ -138,4 +138,7 @@
     的修改和提交就是针对dev的分支了，提交一次后，dev指针往前移动一步，而master指针不变。
     (5) 合并分支
     	$ git merge <分支名>
+    	git merge命令用于合并指定分支到当前分支。默认为Fast-forward模式，就是直接把master指向当前提交，速度很快。
     	当在dev分支上修改完后，想要合并到主分支时，要先切换到主分支 git checkout master，然后 git merge dev ，将dev分支合并到主分支上。
+    (6) 删除分支
+      $ git branch -d <分支名>
