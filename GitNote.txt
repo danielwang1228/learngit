@@ -142,4 +142,32 @@
     	当在dev分支上修改完后，想要合并到主分支时，要先切换到主分支 git checkout master，然后 git merge dev ，将dev分支合并到主分支上。
     (6) 删除分支
       $ git branch -d <分支名>
-      aaaaaaaaaaaaaaaaaaaaaaaa
+
+   5.2 解决冲突
+     在多人协作的项目中，多个人同时修改同一个文件是常有的事，合并分支往往会有冲突。
+     例如：创建一个新的分支feature1，并修改其中的文件并提交。切换到主分支修改同一个文件并提交。这样主分支和feature1分支都有自己新的提交，
+   这种情况下，Git无法快速合并，只能试图把各自的修改合并起来，但这种合并可能会有冲突。
+     $ git merge feature1
+     Git会提示XX文件有冲突，必须手动解决冲突后再提交，如下：
+      Auto-merging GitNote.txt
+      CONFLICT (content): Merge conflict in GitNote.txt
+      Automatic merge failed; fix conflicts and then commit the result.
+     $ git status
+     也会提示冲突的文件，如下：
+      On branch master
+      Your branch is ahead of 'origin/master' by 3 commits.
+      (use "git push" to publish your local commits)
+      You have unmerged paths.
+      (fix conflicts and run "git commit")
+
+      Unmerged paths:
+      (use "git add <file>..." to mark resolution)
+
+          both modified:   GitNote.txt
+
+      no changes added to commit (use "git add" and/or "git commit -a")
+    如果直接打开文件，Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容。
+    手动解决冲突后再提交：
+     $ git add <file>
+     $ git commit -m "conflict fixed"
+    这样就合并成功了。使用 git log 查看分支合并情况。
