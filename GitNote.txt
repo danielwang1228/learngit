@@ -171,3 +171,6 @@
      $ git add <file>
      $ git commit -m "conflict fixed"
     这样就合并成功了。使用 git log 查看分支合并情况。
+     $ git log --graph --pretty=oneline --abbrev-commit
+		查看分支合并图：
+		  git log --graph
