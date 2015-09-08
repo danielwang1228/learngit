@@ -59,8 +59,7 @@
 1.4 版本回退
   在Git中用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，可以用数字表示：HEAD~n
   $ git reset --hard HEAD^/commit id
-  $ git reset --hard HEAD^
-  回退到上一个版本。这时git log会看不到那个回退前的版本。可用$ git reflog查出需要回退的commit id。
+  回退到上一个版本 $ git reset --hard HEAD^ 。这时git log会看不到那个回退前的版本。可用$ git reflog查出需要回退的commit id。
   
 1.5 工作区与暂存区
   工作区：就是电脑上的本地目录。
@@ -117,3 +116,26 @@
    (2) 用命令git clone克隆一个本地库
      $ git clone git@github.com:danielwang1228/gitskills.git
      如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+
+五、分支管理
+  当创建了自己的分支，别人看不到，可以在自己的分支上修改、提交等操作，到修改完毕后一次性合并到原来的分支上，既安全又不影响别人工作。
+  5.1 主分支
+    每次提交，Git都把它们串成一条时间线，这条时间线就是分支。Git默认会有一个master分支，即主分支，HEAD指向的是当前分支。每次提交，master
+  都会向前移动一步，这样，随着不断的提交，master分支的线也越来越长。
+  5.2 创建分支
+    (1) 创建分支
+      $ git branch dev
+    (2) 切换分支
+      $ git checkout dev
+    (3) 创建分支并切换到新创建的分支
+      $ git checkout -b <分支名>
+      参数: -b 表示创建并切换分支。
+      例如：git checkout -b dev
+    (4) 查看当前分支
+      $ git branch
+      此命令会列出所有分支，当前分支前面会有一个*号。
+    当创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，表示当前分支在dev上。现在开始，对工作区
+    的修改和提交就是针对dev的分支了，提交一次后，dev指针往前移动一步，而master指针不变。
+    (5) 合并分支
+    	$ git merge <分支名>
+    	当在dev分支上修改完后，想要合并到主分支时，要先切换到主分支 git checkout master，然后 git merge dev ，将dev分支合并到主分支上。
