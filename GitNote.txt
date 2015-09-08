@@ -179,3 +179,4 @@
     在合并分支时，Git会尽可能用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
     如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样从分支历史上就可以看出分支信息。
      $ git merge --no-ff -m "merge with no-ff" dev
+    这样合并会常见一个新的commit，因此加上-m参数，通过git log命令可查看到历史。
